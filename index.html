@@ -1,0 +1,231 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitivity Sliders</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* You can customize the styling here */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        body {
+        user-select: none;
+        -moz-user-select: none; /* For Mozilla browsers */
+        -webkit-user-select: none; /* For WebKit browsers */
+        -ms-user-select: none; /* For IE10+ */
+        background-color: #1a202c;
+        color: #cbd5e0;
+    }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .text-gray-700 {
+            color: #a0aec0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 2px;
+            background-color: #4a5568;
+            border-radius: 1px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background-color: #cbd5e0;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex justify-center space-x-8">
+        <div class="p-8 w-1/3">
+            <h1 class="text-2xl font-bold mb-4">Latest Sensitivity Settings</h1>
+            <div class="mb-4">
+                <label for="latestSensitivityX" class="block text-sm font-medium text-gray-700">Mouse Sensitivity X</label>
+                <input type="range" id="latestSensitivityX" class="w-full" min="1" max="100" step="0.1" value="50">
+                <span id="latestSensitivityXValue" class="text-gray-600">50.0%</span>
+            </div>
+            <div class="mb-4">
+                <label for="latestSensitivityY" class="block text-sm font-medium text-gray-700">Mouse Sensitivity Y</label>
+                <input type="range" id="latestSensitivityY" class="w-full" min="1" max="100" step="0.1" value="50">
+                <span id="latestSensitivityYValue" class="text-gray-600">50.0%</span>
+            </div>
+            <div class="mb-4">
+                <label for="latestTargetingSensitivity" class="block text-sm font-medium text-gray-700">Mouse Targeting Sensitivity</label>
+                <input type="range" id="latestTargetingSensitivity" class="w-full" min="1" max="100" step="0.1" value="50">
+                <span id="latestTargetingSensitivityValue" class="text-gray-600">50.0%</span>
+            </div>
+            <div class="mb-4">
+                <label for="latestScopeSensitivity" class="block text-sm font-medium text-gray-700">Mouse Scope Sensitivity</label>
+                <input type="range" id="latestScopeSensitivity" class="w-full" min="1" max="100" step="0.1" value="50">
+                <span id="latestScopeSensitivityValue" class="text-gray-600">50.0%</span>
+            </div>
+        </div>
+
+        <div class="p-8 w-1/3">
+            <h1 class="text-2xl font-bold mb-4">Chapter 1 Sensitivity Settings</h1>
+            <div class="mb-4">
+                <label for="sensitivityX" class="block text-sm font-medium text-gray-700">Mouse Sensitivity X</label>
+                <input type="range" id="sensitivityX" class="w-full" min="0" max="1" step="0.001" value="0.5">
+                <span id="sensitivityXValue" class="text-gray-600">0.5</span>
+            </div>
+            <div class="mb-4">
+                <label for="sensitivityY" class="block text-sm font-medium text-gray-700">Mouse Sensitivity Y</label>
+                <input type="range" id="sensitivityY" class="w-full" min="0" max="1" step="0.001" value="0.5">
+                <span id="sensitivityYValue" class="text-gray-600">0.5</span>
+            </div>
+            <div class="mb-4">
+                <label for="targetingSensitivity" class="block text-sm font-medium text-gray-700">Mouse Targeting Sensitivity</label>
+                <input type="range" id="targetingSensitivity" class="w-full" min="0" max="1" step="0.001" value="0.5">
+                <span id="targetingSensitivityValue" class="text-gray-600">0.5</span>
+            </div>
+            <div class="mb-4">
+                <label for="scopeSensitivity" class="block text-sm font-medium text-gray-700">Mouse Scope Sensitivity</label>
+                <input type="range" id="scopeSensitivity" class="w-full" min="0" max="1" step="0.001" value="0.5">
+                <span id="scopeSensitivityValue" class="text-gray-600">0.5</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sensitivityXInput = document.getElementById('sensitivityX');
+        const sensitivityYInput = document.getElementById('sensitivityY');
+        const targetingSensitivityInput = document.getElementById('targetingSensitivity');
+        const scopeSensitivityInput = document.getElementById('scopeSensitivity');
+
+        const latestSensitivityXInput = document.getElementById('latestSensitivityX');
+        const latestSensitivityYInput = document.getElementById('latestSensitivityY');
+        const latestTargetingSensitivityInput = document.getElementById('latestTargetingSensitivity');
+        const latestScopeSensitivityInput = document.getElementById('latestScopeSensitivity');
+
+        const sensitivityXValue = document.getElementById('sensitivityXValue');
+        const sensitivityYValue = document.getElementById('sensitivityYValue');
+        const targetingSensitivityValue = document.getElementById('targetingSensitivityValue');
+        const scopeSensitivityValue = document.getElementById('scopeSensitivityValue');
+
+        const latestSensitivityXValue = document.getElementById('latestSensitivityXValue');
+        const latestSensitivityYValue = document.getElementById('latestSensitivityYValue');
+        const latestTargetingSensitivityValue = document.getElementById('latestTargetingSensitivityValue');
+        const latestScopeSensitivityValue = document.getElementById('latestScopeSensitivityValue');
+
+        sensitivityXInput.addEventListener('input', updateSliders);
+        sensitivityYInput.addEventListener('input', updateSliders);
+        targetingSensitivityInput.addEventListener('input', updateSliders);
+        scopeSensitivityInput.addEventListener('input', updateSliders);
+
+        latestSensitivityXInput.addEventListener('input', updateLatestSliders);
+        latestSensitivityYInput.addEventListener('input', updateLatestSliders);
+        latestTargetingSensitivityInput.addEventListener('input', updateLatestSliders);
+        latestScopeSensitivityInput.addEventListener('input', updateLatestSliders);
+
+        function updateSliders() {
+            const sensitivityX = sensitivityXInput.value;
+            const sensitivityY = sensitivityYInput.value;
+            const targetingSensitivity = targetingSensitivityInput.value;
+            const scopeSensitivity = scopeSensitivityInput.value;
+
+            sensitivityXValue.textContent = sensitivityX;
+            sensitivityYValue.textContent = sensitivityY;
+            targetingSensitivityValue.textContent = targetingSensitivity;
+            scopeSensitivityValue.textContent = scopeSensitivity;
+
+            const latestSensitivityX = (parseFloat(sensitivityX) * 100).toFixed(1);
+            const latestSensitivityY = (parseFloat(sensitivityY) * 100).toFixed(1);
+            const latestTargetingSensitivity = (parseFloat(targetingSensitivity) * 100).toFixed(1);
+            const latestScopeSensitivity = (parseFloat(scopeSensitivity) * 100).toFixed(1);
+
+            latestSensitivityXInput.value = latestSensitivityX;
+            latestSensitivityYInput.value = latestSensitivityY;
+            latestTargetingSensitivityInput.value = latestTargetingSensitivity;
+            latestScopeSensitivityInput.value = latestScopeSensitivity;
+
+            latestSensitivityXValue.textContent = `${latestSensitivityX}%`;
+            latestSensitivityYValue.textContent = `${latestSensitivityY}%`;
+            latestTargetingSensitivityValue.textContent = `${latestTargetingSensitivity}%`;
+            latestScopeSensitivityValue.textContent = `${latestScopeSensitivity}%`;
+
+            console.log(`Chapter 1 - Sensitivity X: ${sensitivityX}`);
+            console.log(`Chapter 1 - Sensitivity Y: ${sensitivityY}`);
+            console.log(`Chapter 1 - Targeting Sensitivity: ${targetingSensitivity}`);
+            console.log(`Chapter 1 - Scope Sensitivity: ${scopeSensitivity}`);
+
+            console.log(`Latest - Sensitivity X: ${latestSensitivityX}`);
+            console.log(`Latest - Sensitivity Y: ${latestSensitivityY}`);
+            console.log(`Latest - Targeting Sensitivity: ${latestTargetingSensitivity}`);
+            console.log(`Latest - Scope Sensitivity: ${latestScopeSensitivity}`);
+        }
+
+        function updateLatestSliders() {
+            const latestSensitivityX = latestSensitivityXInput.value;
+            const latestSensitivityY = latestSensitivityYInput.value;
+            const latestTargetingSensitivity = latestTargetingSensitivityInput.value;
+            const latestScopeSensitivity = latestScopeSensitivityInput.value;
+
+            latestSensitivityXValue.textContent = `${latestSensitivityX}%`;
+            latestSensitivityYValue.textContent = `${latestSensitivityY}%`;
+            latestTargetingSensitivityValue.textContent = `${latestTargetingSensitivity}%`;
+            latestScopeSensitivityValue.textContent = `${latestScopeSensitivity}%`;
+
+            const sensitivityX = (parseFloat(latestSensitivityX) / 100).toFixed(3);
+            const sensitivityY = (parseFloat(latestSensitivityY) / 100).toFixed(3);
+            const targetingSensitivity = (parseFloat(latestTargetingSensitivity) / 100).toFixed(3);
+            const scopeSensitivity = (parseFloat(latestScopeSensitivity) / 100).toFixed(3);
+
+            sensitivityXInput.value = sensitivityX;
+            sensitivityYInput.value = sensitivityY;
+            targetingSensitivityInput.value = targetingSensitivity;
+            scopeSensitivityInput.value = scopeSensitivity;
+
+            sensitivityXValue.textContent = sensitivityX;
+            sensitivityYValue.textContent = sensitivityY;
+            targetingSensitivityValue.textContent = targetingSensitivity;
+            scopeSensitivityValue.textContent = scopeSensitivity;
+
+            console.log(`Chapter 1 - Sensitivity X: ${sensitivityX}`);
+            console.log(`Chapter 1 - Sensitivity Y: ${sensitivityY}`);
+            console.log(`Chapter 1 - Targeting Sensitivity: ${targetingSensitivity}`);
+            console.log(`Chapter 1 - Scope Sensitivity: ${scopeSensitivity}`);
+
+            console.log(`Latest - Sensitivity X: ${latestSensitivityX}`);
+            console.log(`Latest - Sensitivity Y: ${latestSensitivityY}`);
+            console.log(`Latest - Targeting Sensitivity: ${latestTargetingSensitivity}`);
+            console.log(`Latest - Scope Sensitivity: ${latestScopeSensitivity}`);
+        }
+    </script>
+</body>
+</html>
+<!--
+          _____          
+         /\    \         
+        /::\____\        
+       /::::|   |        
+      /:::::|   |        
+     /::::::|   |        
+    /:::/|::|   |        
+   /:::/ |::|   |        
+  /:::/  |::|   | _____  
+ /:::/   |::|   |/\    \ 
+/:: /    |::|   /::\____\
+\::/    /|::|  /:::/    /
+ \/____/ |::| /:::/    / 
+         |::|/:::/    /  
+         |::::::/    /   
+         |:::::/    /    
+         |::::/    /     
+         /:::/    /      
+        /:::/    /       
+        \::/    /        
+         \/____/         
+-->
